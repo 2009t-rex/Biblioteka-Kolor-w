@@ -1,0 +1,436 @@
+:root {
+  /* 🎨 Kolory */
+  --doom-green-dark: #081a12;
+  --doom-green: #1f5c3a;
+  --doom-green-light: #3fa36b;
+
+  --doom-gold: #c9a44c;
+  --doom-gold-light: #f5d97a;
+
+  --doom-metal-dark: #1f2327;
+  --doom-metal: #3a3f45;
+  --doom-metal-light: #7a8088;
+
+  --doom-bg: #050807;
+
+  --doom-glow: rgba(63, 163, 107, 0.6);
+  --doom-glow-strong: rgba(63, 163, 107, 0.9);
+
+  --doom-shadow: rgba(0, 0, 0, 0.8);
+
+  /* ⚙️ */
+  --radius: 10px;
+  --transition: 0.25s ease;
+  --font-main: "Cinzel", serif;
+}
+
+/* 🌑 GLOBAL */
+body {
+  background: radial-gradient(circle at top, #0a1f15, var(--doom-bg));
+  color: var(--doom-gold-light);
+  font-family: var(--font-main);
+}
+
+/* ========================= */
+/* 🔘 BASE (UPGRADED) */
+/* ========================= */
+
+.doom-btn {
+  --btn-glow-intensity: 0.6;
+  --btn-energy-speed: 2.5s;
+  --btn-padding: 0.7em 1.5em;
+
+  position: relative;
+  display: inline-block;
+  padding: var(--btn-padding);
+  border-radius: var(--radius);
+  font-family: "Cinzel", serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--doom-gold-light);
+
+  background:
+    linear-gradient(145deg, var(--doom-metal-dark), var(--doom-metal)),
+    radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 60%);
+
+  border: 1px solid var(--doom-gold);
+
+  box-shadow:
+    inset 0 0 6px var(--doom-metal-light),
+    inset 0 0 20px rgba(255,255,255,0.03),
+    0 4px 15px var(--doom-shadow);
+
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+/* ========================= */
+/* ⚡ ENERGY CORE (NEW) */
+/* ========================= */
+
+.doom-btn::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle,
+    var(--doom-glow) 0%,
+    transparent 60%
+  );
+
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity var(--transition-slow);
+  z-index: -1;
+}
+
+/* ========================= */
+/* ✨ LIGHT SWEEP (UPGRADED) */
+/* ========================= */
+
+.doom-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+/* ========================= */
+/* 🧬 ENERGY LINES (NEW) */
+/* ========================= */
+
+.doom-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.doom-btn span::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 2px,
+    rgba(63,163,107,0.15) 3px
+  );
+
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+/* ========================= */
+/* 🖱️ HOVER (UPGRADED) */
+/* ========================= */
+
+.doom-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+
+  background:
+    linear-gradient(145deg, var(--doom-green-dark), var(--doom-green));
+
+  box-shadow:
+    inset 0 0 12px var(--doom-green-light),
+    0 0 20px var(--doom-glow),
+    0 8px 25px var(--doom-shadow);
+}
+
+.doom-btn:hover::before {
+  opacity: var(--btn-glow-intensity);
+  animation: doomPulse var(--btn-energy-speed) infinite linear;
+}
+
+.doom-btn:hover::after {
+  left: 140%;
+}
+
+.doom-btn:hover span::before {
+  opacity: 1;
+}
+
+/* ========================= */
+/* ⚡ ACTIVE (IMPACT FEEL) */
+/* ========================= */
+
+.doom-btn:active {
+  transform: scale(0.94);
+
+  box-shadow:
+    inset 0 0 25px var(--doom-green-light),
+    0 2px 10px var(--doom-shadow);
+
+  filter: brightness(1.2);
+}
+
+/* ========================= */
+/* 🎯 FOCUS (ACCESSIBILITY++) */
+/* ========================= */
+
+.doom-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px black,
+    0 0 0 4px var(--doom-green-light),
+    0 0 20px var(--doom-glow);
+}
+
+/* ========================= */
+/* ⛔ DISABLED */
+/* ========================= */
+
+.doom-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+  box-shadow: none;
+}
+
+/* ========================= */
+/* 🧪 ENERGY ANIMATION */
+/* ========================= */
+
+@keyframes doomPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.4;
+  }
+}
+
+/* ========================= */
+/* 🛡️ ROYAL (UPGRADE) */
+/* ========================= */
+
+.doom-btn--royal {
+  background: linear-gradient(145deg, #3a2f12, var(--doom-gold));
+  color: #111;
+  border-color: var(--doom-gold-light);
+}
+
+.doom-btn--royal:hover {
+  box-shadow:
+    0 0 25px rgba(245,217,122,0.8),
+    inset 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* ========================= */
+/* 🧪 ARCANE (UPGRADE) */
+/* ========================= */
+
+.doom-btn--arcane {
+  background: linear-gradient(145deg, #02150d, var(--doom-green));
+  border-color: var(--doom-green-light);
+}
+
+.doom-btn--arcane:hover {
+  box-shadow:
+    0 0 30px var(--doom-glow),
+    inset 0 0 15px var(--doom-green-light);
+}
+
+/* ========================= */
+/* 🔥 SIZE VARIANTS */
+/* ========================= */
+
+.doom-btn--sm {
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+}
+
+.doom-btn--lg {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+}
+
+/* ========================= */
+/* 🧾 INPUT */
+/* ========================= */
+
+.doom-input {
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--doom-metal-light);
+  background: linear-gradient(
+    145deg,
+    var(--doom-metal-dark),
+    #000
+  );
+  color: var(--doom-gold-light);
+  outline: none;
+  transition: var(--transition);
+}
+
+.doom-input::placeholder {
+  color: #888;
+}
+
+.doom-input:focus {
+  border-color: var(--doom-green-light);
+  box-shadow:
+    0 0 10px var(--doom-glow),
+    inset 0 0 6px var(--doom-green-light);
+}
+
+/* ========================= */
+/* 📦 CARD */
+/* ========================= */
+
+.doom-card {
+  background: linear-gradient(
+    160deg,
+    var(--doom-metal-dark),
+    var(--doom-metal)
+  );
+  border: 1px solid var(--doom-metal-light);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+
+  box-shadow:
+    0 10px 30px var(--doom-shadow),
+    inset 0 0 10px rgba(255,255,255,0.05);
+
+  transition: var(--transition);
+}
+
+.doom-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--doom-green-light);
+
+  box-shadow:
+    0 0 25px var(--doom-glow),
+    0 15px 40px var(--doom-shadow);
+}
+
+/* ========================= */
+/* 🧭 NAVBAR */
+/* ========================= */
+
+.doom-navbar {
+  background: linear-gradient(
+    90deg,
+    #000,
+    var(--doom-metal-dark)
+  );
+  border-bottom: 1px solid var(--doom-metal-light);
+  padding: 1rem 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doom-navbar a {
+  color: var(--doom-gold);
+  text-decoration: none;
+  margin: 0 1rem;
+  position: relative;
+}
+
+.doom-navbar a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--doom-green-light);
+  transition: var(--transition);
+}
+
+.doom-navbar a:hover::after {
+  width: 100%;
+}
+
+/* ========================= */
+/* 🏷️ BADGE */
+/* ========================= */
+
+.doom-badge {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+
+  background: var(--doom-green-dark);
+  color: var(--doom-green-light);
+
+  border: 1px solid var(--doom-green);
+  box-shadow: 0 0 10px var(--doom-glow);
+}
+
+/* ========================= */
+/* 📊 PROGRESS BAR */
+/* ========================= */
+
+.doom-progress {
+  width: 100%;
+  height: 8px;
+  background: #111;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.doom-progress-bar {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(
+    90deg,
+    var(--doom-green),
+    var(--doom-green-light)
+  );
+
+  box-shadow: 0 0 10px var(--doom-glow-strong);
+}
+
+/* ========================= */
+/* ✨ SCROLLBAR */
+/* ========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    var(--doom-metal),
+    var(--doom-green)
+  );
+  border-radius: 10px;
+}
+
+/* ========================= */
+/* 🖍️ TEXT SELECTION */
+/* ========================= */
+
+::selection {
+  background: var(--doom-green-light);
+  color: black;
+}
