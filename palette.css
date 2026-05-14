@@ -1,0 +1,519 @@
+/**
+ * ============================================================
+ *  DESIGN SYSTEM — COLOR TOKENS
+ *  Curated from 11 hand-picked bold-color palettes
+ *
+ *  Structure mirrors Bootstrap's approach:
+ *    1. Raw named tokens  (--color-*)
+ *    2. Semantic aliases  (--palette-*-base / --palette-*-accent)
+ *    3. Role-based tokens (--clr-primary, --clr-surface, etc.)
+ *
+ *  All values defined on :root so every element inherits them.
+ * ============================================================
+ */
+
+/* ────────────────────────────────────────────────────────────
+   § 1  RAW NAMED COLOR TOKENS
+   One token per named swatch — the single source of truth.
+   Never use raw hex values anywhere else; always reference
+   a token from this section.
+   ──────────────────────────────────────────────────────────── */
+:root {
+
+  /* — Pair 01 · Cosmic · editorial / luxury ─────────────── */
+  --color-cosmic-purple:     #362450;
+  --color-punch-pink:        #E1516F;
+
+  /* — Pair 02 · Electric · high-energy / sport ──────────── */
+  --color-electric-red:      #FF1B1C;
+  --color-neon-aqua:         #00E5FF;
+
+  /* — Pair 03 · Varsity · collegiate / athletic ──────────── */
+  --color-coquelicot:        #FF4000;
+  --color-penn-blue:         #0A1045;
+
+  /* — Pair 04 · Candy · playful / youth ─────────────────── */
+  --color-pink-lemonade:     #FF5097;
+  --color-slime-margarita:   #E4F482;
+
+  /* — Pair 05 · Rave · festival / techno ────────────────── */
+  --color-lime-surge:        #22FF7B;
+  --color-cosmic-berry:      #FF1D9E;
+
+  /* — Pair 06 · Matrix · futuristic / dark-UI ───────────── */
+  --color-neon-mint:         #54E6D4;
+  --color-carbon-black:      #101516;
+
+  /* — Pair 07 · Venom · comic / streetwear ──────────────── */
+  --color-royal-purple:      #4C1D95;
+  --color-neon-leaf-green:   #A3E635;
+
+  /* — Pair 08 · Retro-Wave · 80s / synthwave ─────────────── */
+  --color-neon-pink:         #FF1E9D;
+  --color-bright-cyan:       #00FFF7;
+
+  /* — Pair 09 · Electro-Violet · cyberpunk ──────────────── */
+  --color-neon-violet:       #9D4EDD;
+  --color-electric-cyan:     #00F5D4;
+
+  /* — Pair 10 · Abyss · dark-luxury / fashion ───────────── */
+  --color-deepsea:           #220049;
+  --color-strawberry:        #ED254E;
+
+  /* — Trio 11 · Starfield · studio / neutral-bold ──────── */
+  --color-amethyst:          #7F49B4;
+  --color-void:              #141414;
+  --color-silver:            #CFCFCF;
+
+  /* — Universals ────────────────────────────────────────── */
+  --color-white:             #FFFFFF;
+  --color-black:             #000000;
+  --color-transparent:       transparent;
+
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   § 2  SEMANTIC PALETTE ALIASES
+   Each named pair exposed as --palette-{name}-{role}.
+   base   = dominant / background color of the pair
+   accent = contrasting / foreground color of the pair
+   ──────────────────────────────────────────────────────────── */
+:root {
+
+  /* Pair 01 */
+  --palette-cosmic-base:       var(--color-cosmic-purple);
+  --palette-cosmic-accent:     var(--color-punch-pink);
+
+  /* Pair 02 */
+  --palette-electric-base:     var(--color-electric-red);
+  --palette-electric-accent:   var(--color-neon-aqua);
+
+  /* Pair 03 */
+  --palette-varsity-base:      var(--color-coquelicot);
+  --palette-varsity-accent:    var(--color-penn-blue);
+
+  /* Pair 04 */
+  --palette-candy-base:        var(--color-pink-lemonade);
+  --palette-candy-accent:      var(--color-slime-margarita);
+
+  /* Pair 05 */
+  --palette-rave-base:         var(--color-cosmic-berry);
+  --palette-rave-accent:       var(--color-lime-surge);
+
+  /* Pair 06 */
+  --palette-matrix-base:       var(--color-carbon-black);
+  --palette-matrix-accent:     var(--color-neon-mint);
+
+  /* Pair 07 */
+  --palette-venom-base:        var(--color-royal-purple);
+  --palette-venom-accent:      var(--color-neon-leaf-green);
+
+  /* Pair 08 */
+  --palette-retrowave-base:    var(--color-neon-pink);
+  --palette-retrowave-accent:  var(--color-bright-cyan);
+
+  /* Pair 09 */
+  --palette-electro-base:      var(--color-neon-violet);
+  --palette-electro-accent:    var(--color-electric-cyan);
+
+  /* Pair 10 */
+  --palette-abyss-base:        var(--color-deepsea);
+  --palette-abyss-accent:      var(--color-strawberry);
+
+  /* Trio 11 */
+  --palette-starfield-primary:   var(--color-amethyst);
+  --palette-starfield-surface:   var(--color-void);
+  --palette-starfield-neutral:   var(--color-silver);
+
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   § 3  ROLE-BASED DESIGN TOKENS  (theme layer)
+   These are what components should reference.
+   Swap out an entire theme by overriding this block only.
+   Default theme: Matrix (dark-UI)
+   ──────────────────────────────────────────────────────────── */
+:root {
+
+  /* Surface / Background ---------------------------------- */
+  --clr-bg:           var(--color-carbon-black);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-carbon-black) 85%, var(--color-neon-mint) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-carbon-black) 70%, var(--color-white) 30%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-carbon-black) 50%, var(--color-white) 50%);
+  --clr-overlay:      color-mix(in srgb, var(--color-carbon-black) 60%, var(--color-transparent));
+
+  /* Content / Text ---------------------------------------- */
+  --clr-text:         var(--color-white);
+  --clr-text-muted:   var(--color-silver);
+  --clr-text-inverse: var(--color-carbon-black);
+
+  /* Brand ------------------------------------------------- */
+  --clr-primary:      var(--color-neon-mint);
+  --clr-primary-dark: color-mix(in srgb, var(--color-neon-mint) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-amethyst);
+
+  /* Accent / Interactive ---------------------------------- */
+  --clr-accent:       var(--color-neon-violet);
+  --clr-accent-vivid: var(--color-electric-cyan);
+  --clr-highlight:    var(--color-neon-leaf-green);
+
+  /* Feedback states --------------------------------------- */
+  --clr-success:      var(--color-lime-surge);
+  --clr-warning:      var(--color-coquelicot);
+  --clr-error:        var(--color-electric-red);
+  --clr-info:         var(--color-neon-aqua);
+
+  /* Borders & Dividers ------------------------------------ */
+  --clr-border:       color-mix(in srgb, var(--color-silver) 30%, var(--color-transparent));
+  --clr-border-focus: var(--color-neon-mint);
+
+  /* Shadows ----------------------------------------------- */
+  --clr-shadow:       color-mix(in srgb, var(--color-carbon-black) 80%, var(--color-transparent));
+  --clr-glow-primary: color-mix(in srgb, var(--color-neon-mint) 50%, var(--color-transparent));
+  --clr-glow-accent:  color-mix(in srgb, var(--color-neon-violet) 50%, var(--color-transparent));
+
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   § 4  THEME VARIANTS
+   Add  data-theme="cosmic"  (or any name below) to <html>
+   or any wrapper element to activate an alternate theme.
+   ──────────────────────────────────────────────────────────── */
+
+/* Theme: Cosmic — dark editorial ──────────────────────────── */
+[data-theme="cosmic"] {
+  --clr-bg:           var(--color-cosmic-purple);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-cosmic-purple) 80%, var(--color-punch-pink) 20%);
+  --clr-surface:      color-mix(in srgb, var(--color-cosmic-purple) 60%, var(--color-white) 40%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-cosmic-purple) 40%, var(--color-white) 60%);
+  --clr-text:         var(--color-white);
+  --clr-text-muted:   color-mix(in srgb, var(--color-punch-pink) 70%, var(--color-white) 30%);
+  --clr-text-inverse: var(--color-cosmic-purple);
+  --clr-primary:      var(--color-punch-pink);
+  --clr-primary-dark: color-mix(in srgb, var(--color-punch-pink) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-cosmic-purple);
+  --clr-accent:       var(--color-punch-pink);
+  --clr-accent-vivid: var(--color-white);
+  --clr-glow-primary: color-mix(in srgb, var(--color-punch-pink) 50%, var(--color-transparent));
+}
+
+/* Theme: Electric — high-contrast sport ───────────────────── */
+[data-theme="electric"] {
+  --clr-bg:           var(--color-electric-red);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-electric-red) 85%, var(--color-neon-aqua) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-electric-red) 70%, var(--color-white) 30%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-electric-red) 50%, var(--color-white) 50%);
+  --clr-text:         var(--color-neon-aqua);
+  --clr-text-muted:   color-mix(in srgb, var(--color-neon-aqua) 70%, var(--color-white) 30%);
+  --clr-text-inverse: var(--color-electric-red);
+  --clr-primary:      var(--color-neon-aqua);
+  --clr-primary-dark: color-mix(in srgb, var(--color-neon-aqua) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-white);
+  --clr-accent:       var(--color-neon-aqua);
+  --clr-glow-primary: color-mix(in srgb, var(--color-neon-aqua) 40%, var(--color-transparent));
+}
+
+/* Theme: Varsity — bold collegiate ────────────────────────── */
+[data-theme="varsity"] {
+  --clr-bg:           var(--color-penn-blue);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-penn-blue) 85%, var(--color-coquelicot) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-penn-blue) 70%, var(--color-white) 30%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-penn-blue) 50%, var(--color-white) 50%);
+  --clr-text:         var(--color-white);
+  --clr-text-muted:   var(--color-silver);
+  --clr-text-inverse: var(--color-penn-blue);
+  --clr-primary:      var(--color-coquelicot);
+  --clr-primary-dark: color-mix(in srgb, var(--color-coquelicot) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-white);
+  --clr-accent:       var(--color-coquelicot);
+  --clr-glow-primary: color-mix(in srgb, var(--color-coquelicot) 40%, var(--color-transparent));
+}
+
+/* Theme: Candy — playful light ─────────────────────────────── */
+[data-theme="candy"] {
+  --clr-bg:           var(--color-slime-margarita);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-slime-margarita) 85%, var(--color-pink-lemonade) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-slime-margarita) 70%, var(--color-white) 30%);
+  --clr-surface-alt:  var(--color-white);
+  --clr-text:         var(--color-pink-lemonade);
+  --clr-text-muted:   color-mix(in srgb, var(--color-pink-lemonade) 60%, var(--color-black) 40%);
+  --clr-text-inverse: var(--color-slime-margarita);
+  --clr-primary:      var(--color-pink-lemonade);
+  --clr-primary-dark: color-mix(in srgb, var(--color-pink-lemonade) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-slime-margarita);
+  --clr-accent:       var(--color-pink-lemonade);
+  --clr-glow-primary: color-mix(in srgb, var(--color-pink-lemonade) 40%, var(--color-transparent));
+}
+
+/* Theme: Rave — festival neon ──────────────────────────────── */
+[data-theme="rave"] {
+  --clr-bg:           var(--color-cosmic-berry);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-cosmic-berry) 85%, var(--color-lime-surge) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-cosmic-berry) 70%, var(--color-black) 30%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-cosmic-berry) 50%, var(--color-black) 50%);
+  --clr-text:         var(--color-lime-surge);
+  --clr-text-muted:   color-mix(in srgb, var(--color-lime-surge) 70%, var(--color-white) 30%);
+  --clr-text-inverse: var(--color-cosmic-berry);
+  --clr-primary:      var(--color-lime-surge);
+  --clr-primary-dark: color-mix(in srgb, var(--color-lime-surge) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-white);
+  --clr-accent:       var(--color-lime-surge);
+  --clr-glow-primary: color-mix(in srgb, var(--color-lime-surge) 50%, var(--color-transparent));
+}
+
+/* Theme: Venom — dark + vivid ──────────────────────────────── */
+[data-theme="venom"] {
+  --clr-bg:           var(--color-royal-purple);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-royal-purple) 85%, var(--color-neon-leaf-green) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-royal-purple) 70%, var(--color-white) 30%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-royal-purple) 50%, var(--color-white) 50%);
+  --clr-text:         var(--color-white);
+  --clr-text-muted:   var(--color-silver);
+  --clr-text-inverse: var(--color-royal-purple);
+  --clr-primary:      var(--color-neon-leaf-green);
+  --clr-primary-dark: color-mix(in srgb, var(--color-neon-leaf-green) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-amethyst);
+  --clr-accent:       var(--color-neon-leaf-green);
+  --clr-glow-primary: color-mix(in srgb, var(--color-neon-leaf-green) 50%, var(--color-transparent));
+}
+
+/* Theme: Retrowave — 80s synthwave ─────────────────────────── */
+[data-theme="retrowave"] {
+  --clr-bg:           var(--color-neon-pink);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-neon-pink) 85%, var(--color-bright-cyan) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-neon-pink) 70%, var(--color-black) 30%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-neon-pink) 50%, var(--color-black) 50%);
+  --clr-text:         var(--color-bright-cyan);
+  --clr-text-muted:   color-mix(in srgb, var(--color-bright-cyan) 70%, var(--color-white) 30%);
+  --clr-text-inverse: var(--color-neon-pink);
+  --clr-primary:      var(--color-bright-cyan);
+  --clr-primary-dark: color-mix(in srgb, var(--color-bright-cyan) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-white);
+  --clr-accent:       var(--color-bright-cyan);
+  --clr-glow-primary: color-mix(in srgb, var(--color-bright-cyan) 50%, var(--color-transparent));
+}
+
+/* Theme: Electro — cyberpunk violet ────────────────────────── */
+[data-theme="electro"] {
+  --clr-bg:           var(--color-neon-violet);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-neon-violet) 85%, var(--color-electric-cyan) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-neon-violet) 70%, var(--color-black) 30%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-neon-violet) 50%, var(--color-black) 50%);
+  --clr-text:         var(--color-electric-cyan);
+  --clr-text-muted:   color-mix(in srgb, var(--color-electric-cyan) 70%, var(--color-white) 30%);
+  --clr-text-inverse: var(--color-neon-violet);
+  --clr-primary:      var(--color-electric-cyan);
+  --clr-primary-dark: color-mix(in srgb, var(--color-electric-cyan) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-white);
+  --clr-accent:       var(--color-electric-cyan);
+  --clr-glow-primary: color-mix(in srgb, var(--color-electric-cyan) 50%, var(--color-transparent));
+}
+
+/* Theme: Abyss — dark fashion luxury ───────────────────────── */
+[data-theme="abyss"] {
+  --clr-bg:           var(--color-deepsea);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-deepsea) 85%, var(--color-strawberry) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-deepsea) 70%, var(--color-white) 30%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-deepsea) 50%, var(--color-white) 50%);
+  --clr-text:         var(--color-white);
+  --clr-text-muted:   var(--color-silver);
+  --clr-text-inverse: var(--color-deepsea);
+  --clr-primary:      var(--color-strawberry);
+  --clr-primary-dark: color-mix(in srgb, var(--color-strawberry) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-amethyst);
+  --clr-accent:       var(--color-strawberry);
+  --clr-glow-primary: color-mix(in srgb, var(--color-strawberry) 50%, var(--color-transparent));
+}
+
+/* Theme: Starfield — monochrome + purple pop ───────────────── */
+[data-theme="starfield"] {
+  --clr-bg:           var(--color-void);
+  --clr-bg-subtle:    color-mix(in srgb, var(--color-void) 85%, var(--color-amethyst) 15%);
+  --clr-surface:      color-mix(in srgb, var(--color-void) 80%, var(--color-silver) 20%);
+  --clr-surface-alt:  color-mix(in srgb, var(--color-void) 60%, var(--color-silver) 40%);
+  --clr-text:         var(--color-silver);
+  --clr-text-muted:   color-mix(in srgb, var(--color-silver) 60%, var(--color-void) 40%);
+  --clr-text-inverse: var(--color-void);
+  --clr-primary:      var(--color-amethyst);
+  --clr-primary-dark: color-mix(in srgb, var(--color-amethyst) 70%, var(--color-black) 30%);
+  --clr-secondary:    var(--color-silver);
+  --clr-accent:       var(--color-amethyst);
+  --clr-accent-vivid: var(--color-silver);
+  --clr-glow-primary: color-mix(in srgb, var(--color-amethyst) 50%, var(--color-transparent));
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   § 5  UTILITY HELPER CLASSES
+   Opt-in color utilities — similar to Bootstrap's text-*
+   and bg-* but scoped to this token system.
+   ──────────────────────────────────────────────────────────── */
+
+/* Text colors -------------------------------------------- */
+.text-primary      { color: var(--clr-primary);      }
+.text-secondary    { color: var(--clr-secondary);     }
+.text-accent       { color: var(--clr-accent);        }
+.text-muted        { color: var(--clr-text-muted);    }
+.text-inverse      { color: var(--clr-text-inverse);  }
+
+/* Named swatch text shortcuts */
+.text-cosmic       { color: var(--color-cosmic-purple);   }
+.text-punch        { color: var(--color-punch-pink);       }
+.text-electric-red { color: var(--color-electric-red);     }
+.text-aqua         { color: var(--color-neon-aqua);        }
+.text-coquelicot   { color: var(--color-coquelicot);       }
+.text-penn-blue    { color: var(--color-penn-blue);        }
+.text-lemonade     { color: var(--color-pink-lemonade);    }
+.text-slime        { color: var(--color-slime-margarita);  }
+.text-lime-surge   { color: var(--color-lime-surge);       }
+.text-berry        { color: var(--color-cosmic-berry);     }
+.text-mint         { color: var(--color-neon-mint);        }
+.text-void         { color: var(--color-void);             }
+.text-royal-purple { color: var(--color-royal-purple);     }
+.text-leaf-green   { color: var(--color-neon-leaf-green);  }
+.text-neon-pink    { color: var(--color-neon-pink);        }
+.text-bright-cyan  { color: var(--color-bright-cyan);      }
+.text-violet       { color: var(--color-neon-violet);      }
+.text-electric-cyan{ color: var(--color-electric-cyan);    }
+.text-deepsea      { color: var(--color-deepsea);          }
+.text-strawberry   { color: var(--color-strawberry);       }
+.text-amethyst     { color: var(--color-amethyst);         }
+.text-silver       { color: var(--color-silver);           }
+
+/* Background colors -------------------------------------- */
+.bg-primary        { background-color: var(--clr-primary);      }
+.bg-secondary      { background-color: var(--clr-secondary);    }
+.bg-accent         { background-color: var(--clr-accent);       }
+.bg-surface        { background-color: var(--clr-surface);      }
+.bg-surface-alt    { background-color: var(--clr-surface-alt);  }
+.bg-base           { background-color: var(--clr-bg);           }
+
+/* Named swatch background shortcuts */
+.bg-cosmic         { background-color: var(--color-cosmic-purple);   }
+.bg-punch          { background-color: var(--color-punch-pink);       }
+.bg-electric-red   { background-color: var(--color-electric-red);     }
+.bg-aqua           { background-color: var(--color-neon-aqua);        }
+.bg-coquelicot     { background-color: var(--color-coquelicot);       }
+.bg-penn-blue      { background-color: var(--color-penn-blue);        }
+.bg-lemonade       { background-color: var(--color-pink-lemonade);    }
+.bg-slime          { background-color: var(--color-slime-margarita);  }
+.bg-lime-surge     { background-color: var(--color-lime-surge);       }
+.bg-berry          { background-color: var(--color-cosmic-berry);     }
+.bg-mint           { background-color: var(--color-neon-mint);        }
+.bg-void           { background-color: var(--color-void);             }
+.bg-royal-purple   { background-color: var(--color-royal-purple);     }
+.bg-leaf-green     { background-color: var(--color-neon-leaf-green);  }
+.bg-neon-pink      { background-color: var(--color-neon-pink);        }
+.bg-bright-cyan    { background-color: var(--color-bright-cyan);      }
+.bg-violet         { background-color: var(--color-neon-violet);      }
+.bg-electric-cyan  { background-color: var(--color-electric-cyan);    }
+.bg-deepsea        { background-color: var(--color-deepsea);          }
+.bg-strawberry     { background-color: var(--color-strawberry);       }
+.bg-amethyst       { background-color: var(--color-amethyst);         }
+.bg-silver         { background-color: var(--color-silver);           }
+
+/* Border colors ------------------------------------------ */
+.border-primary    { border-color: var(--clr-primary);      }
+.border-accent     { border-color: var(--clr-accent);       }
+.border-focus      { border-color: var(--clr-border-focus); }
+
+/* Glow / box-shadow helpers ------------------------------ */
+.glow-primary {
+  box-shadow:
+    0 0 8px  var(--clr-glow-primary),
+    0 0 24px var(--clr-glow-primary);
+}
+.glow-accent {
+  box-shadow:
+    0 0 8px  var(--clr-glow-accent),
+    0 0 24px var(--clr-glow-accent);
+}
+.glow-lg-primary {
+  box-shadow:
+    0 0 12px var(--clr-glow-primary),
+    0 0 40px var(--clr-glow-primary),
+    0 0 80px color-mix(in srgb, var(--clr-glow-primary) 40%, transparent);
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   § 6  GRADIENT PRESETS
+   Pre-built gradients using token pairs for fast use.
+   Apply via the class or copy the gradient value directly.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  --gradient-cosmic:     linear-gradient(135deg, var(--color-cosmic-purple), var(--color-punch-pink));
+  --gradient-electric:   linear-gradient(135deg, var(--color-electric-red),  var(--color-neon-aqua));
+  --gradient-varsity:    linear-gradient(135deg, var(--color-coquelicot),     var(--color-penn-blue));
+  --gradient-candy:      linear-gradient(135deg, var(--color-pink-lemonade),  var(--color-slime-margarita));
+  --gradient-rave:       linear-gradient(135deg, var(--color-cosmic-berry),   var(--color-lime-surge));
+  --gradient-matrix:     linear-gradient(135deg, var(--color-carbon-black),   var(--color-neon-mint));
+  --gradient-venom:      linear-gradient(135deg, var(--color-royal-purple),   var(--color-neon-leaf-green));
+  --gradient-retrowave:  linear-gradient(135deg, var(--color-neon-pink),      var(--color-bright-cyan));
+  --gradient-electro:    linear-gradient(135deg, var(--color-neon-violet),    var(--color-electric-cyan));
+  --gradient-abyss:      linear-gradient(135deg, var(--color-deepsea),        var(--color-strawberry));
+  --gradient-starfield:  linear-gradient(135deg, var(--color-void),           var(--color-amethyst));
+}
+
+.grad-cosmic     { background: var(--gradient-cosmic);    }
+.grad-electric   { background: var(--gradient-electric);  }
+.grad-varsity    { background: var(--gradient-varsity);   }
+.grad-candy      { background: var(--gradient-candy);     }
+.grad-rave       { background: var(--gradient-rave);      }
+.grad-matrix     { background: var(--gradient-matrix);    }
+.grad-venom      { background: var(--gradient-venom);     }
+.grad-retrowave  { background: var(--gradient-retrowave); }
+.grad-electro    { background: var(--gradient-electro);   }
+.grad-abyss      { background: var(--gradient-abyss);     }
+.grad-starfield  { background: var(--gradient-starfield); }
+
+
+/* ────────────────────────────────────────────────────────────
+   § 7  REDUCED-MOTION SAFETY
+   Respect the user's OS-level motion preference.
+   ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+  }
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   USAGE CHEAT-SHEET
+   ──────────────────────────────────────────────────────────────
+
+   1. ACTIVATE A THEME
+      <html data-theme="abyss">
+      — or —
+      <section data-theme="candy"> ... </section>
+
+   2. USE ROLE TOKENS IN YOUR CSS
+      .btn { background: var(--clr-primary); color: var(--clr-text-inverse); }
+      .card { background: var(--clr-surface); border: 1px solid var(--clr-border); }
+
+   3. USE NAMED TOKENS WHEN YOU NEED A SPECIFIC COLOR
+      .logo { fill: var(--color-neon-mint); }
+
+   4. APPLY A GRADIENT
+      .hero { background: var(--gradient-retrowave); }
+      — or use a utility class —
+      <div class="grad-rave"> ... </div>
+
+   5. GLOW EFFECT
+      <button class="glow-primary"> Click me </button>
+
+   Available themes:
+     (default)  matrix
+     cosmic     electric    varsity   candy
+     rave       venom       retrowave electro
+     abyss      starfield
+
+   ──────────────────────────────────────────────────────────── */

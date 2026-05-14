@@ -1,0 +1,993 @@
+/* ============================================================
+   DEKU.CSS — Izuku Midoriya Inspired Stylesheet
+   "You can become a hero." — All Might
+   ============================================================
+   
+   COLOR PALETTE (inspired by Deku's iconic look):
+   --deku-green        : #00C853  (signature green, Hero Costume)
+   --deku-dark-green   : #1B5E20  (darker suit accents)
+   --deku-light-green  : #B9F6CA  (soft glow, glowing veins)
+   --deku-white        : #F0F4F8  (white costume base)
+   --deku-red          : #D32F2F  (red boots, One For All sparks)
+   --deku-gold         : #FFD600  (gold trim, All Might inspired)
+   --deku-black        : #1A1A2E  (dark UA uniform)
+   --deku-scratch      : #E8F5E9  (notebook paper)
+   --deku-ink          : #263238  (analysis ink)
+   --deku-lightning    : #76FF03  (OFA electricity)
+   --deku-spark        : #CCFF90  (power glow)
+   --deku-smash        : #F57F17  (smash energy)
+   
+   FONTS:
+   - Display/Hero names : "Bebas Neue" (bold, heroic)
+   - Body/Analysis text : "Kalam" (handwritten notebook feel)
+   - UI/Stats           : "Rajdhani" (clean, UA-style)
+   
+   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kalam:wght@300;400;700&family=Rajdhani:wght@400;500;600;700&display=swap');
+   ============================================================ */
+
+/* ── CSS CUSTOM PROPERTIES ────────────────────────────────── */
+:root {
+  /* Core Deku Colors */
+  --deku-green:        #00C853;
+  --deku-dark-green:   #1B5E20;
+  --deku-mid-green:    #2E7D32;
+  --deku-light-green:  #B9F6CA;
+  --deku-pale-green:   #E8F5E9;
+  --deku-white:        #F0F4F8;
+  --deku-off-white:    #FAFAFA;
+  --deku-red:          #D32F2F;
+  --deku-light-red:    #FFCDD2;
+  --deku-gold:         #FFD600;
+  --deku-dark-gold:    #F9A825;
+  --deku-black:        #1A1A2E;
+  --deku-dark:         #0D0D1A;
+  --deku-scratch:      #F5F9F5;
+  --deku-ink:          #1C3A1E;
+  --deku-lightning:    #76FF03;
+  --deku-spark:        #CCFF90;
+  --deku-smash:        #F57F17;
+  --deku-vein:         #00E676;
+  --deku-ua-gray:      #37474F;
+  --deku-ua-light:     #ECEFF1;
+  --deku-bunny-ear:    #009624;
+
+  /* Typography */
+  --font-hero:         'Bebas Neue', 'Impact', sans-serif;
+  --font-notebook:     'Kalam', 'Caveat', cursive;
+  --font-stats:        'Rajdhani', 'Oswald', sans-serif;
+  --font-body:         'Rajdhani', sans-serif;
+
+  /* Spacing */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   40px;
+  --space-xxl:  64px;
+
+  /* Borders */
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    16px;
+  --radius-xl:    24px;
+  --radius-pill:  999px;
+  --radius-panel: 2px 16px 2px 16px; /* asymmetric hero panel */
+
+  /* Shadows */
+  --shadow-green:   0 4px 20px rgba(0, 200, 83, 0.35);
+  --shadow-smash:   0 6px 30px rgba(0, 200, 83, 0.5),
+                    0 0 0 2px var(--deku-dark-green);
+  --shadow-vein:    0 0 12px rgba(0, 230, 118, 0.7);
+  --shadow-gold:    0 4px 20px rgba(255, 214, 0, 0.4);
+  --shadow-card:    0 2px 12px rgba(30, 80, 30, 0.12);
+  --shadow-panel:   4px 4px 0 var(--deku-dark-green);
+
+  /* OFA Animation Durations */
+  --anim-spark:   0.4s;
+  --anim-pulse:   2s;
+  --anim-smash:   0.6s;
+  --anim-float:   3s;
+}
+
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--deku-off-white);
+  color: var(--deku-ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR (Green Hero Style) ────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--deku-pale-green);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--deku-mid-green);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--deku-green);
+}
+
+/* ── SELECTION ───────────────────────────────────────────── */
+::selection {
+  background: var(--deku-light-green);
+  color: var(--deku-dark-green);
+}
+
+/* ── TYPOGRAPHY ──────────────────────────────────────────── */
+
+/* Hero-grade headings */
+h1, h2, h3 {
+  font-family: var(--font-hero);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  color: var(--deku-dark-green);
+  text-shadow: 3px 3px 0 var(--deku-light-green);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--deku-mid-green);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: var(--deku-dark-green);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-stats);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--deku-ua-gray);
+  text-transform: uppercase;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--deku-ink);
+  margin-bottom: var(--space-md);
+}
+
+/* Notebook / analysis text */
+.deku-analysis, .deku-notebook {
+  font-family: var(--font-notebook);
+  font-size: 1.05rem;
+  color: var(--deku-ink);
+  line-height: 1.9;
+}
+
+/* Hero Name Title */
+.hero-title {
+  font-family: var(--font-hero);
+  font-size: clamp(3rem, 10vw, 7rem);
+  letter-spacing: 0.06em;
+  color: var(--deku-white);
+  text-shadow:
+    0 0 20px var(--deku-green),
+    0 0 40px var(--deku-lightning),
+    4px 4px 0 var(--deku-dark-green);
+  line-height: 0.95;
+}
+
+/* Plus Ultra proclamation */
+.plus-ultra {
+  font-family: var(--font-hero);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--deku-gold);
+  text-shadow: 2px 2px 0 var(--deku-smash);
+}
+
+/* ── LINKS ────────────────────────────────────────────────── */
+a {
+  color: var(--deku-mid-green);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+a:hover {
+  color: var(--deku-green);
+  border-bottom-color: var(--deku-green);
+}
+
+/* ── BUTTONS ──────────────────────────────────────────────── */
+
+/* Base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-stats);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.15s ease;
+}
+.btn:hover::after {
+  background: rgba(255,255,255,0.1);
+}
+
+/* SMASH — primary action */
+.btn-smash {
+  background: var(--deku-dark-green);
+  color: var(--deku-light-green);
+  border-color: var(--deku-green);
+  box-shadow: var(--shadow-green);
+}
+.btn-smash:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-smash);
+}
+.btn-smash:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* OFA Mode — glowing green */
+.btn-ofa {
+  background: var(--deku-green);
+  color: var(--deku-dark);
+  border-color: var(--deku-lightning);
+  box-shadow: var(--shadow-vein);
+  animation: ofa-pulse var(--anim-pulse) ease-in-out infinite;
+}
+
+/* Ghost / secondary */
+.btn-ghost {
+  background: transparent;
+  color: var(--deku-mid-green);
+  border-color: var(--deku-mid-green);
+}
+.btn-ghost:hover {
+  background: var(--deku-pale-green);
+  transform: translateY(-1px);
+}
+
+/* Danger / Red — smash gone wrong */
+.btn-danger {
+  background: var(--deku-red);
+  color: #fff;
+  border-color: #b71c1c;
+}
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(211, 47, 47, 0.45);
+}
+
+/* Gold / All Might tribute */
+.btn-allmight {
+  background: var(--deku-gold);
+  color: var(--deku-dark);
+  border-color: var(--deku-dark-gold);
+  box-shadow: var(--shadow-gold);
+  font-size: 1rem;
+}
+.btn-allmight:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(255, 214, 0, 0.6);
+}
+
+/* Small button */
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+}
+
+/* Large button */
+.btn-lg {
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  border-radius: var(--radius-lg);
+}
+
+/* ── CARDS ────────────────────────────────────────────────── */
+
+/* Base Card */
+.card {
+  background: var(--deku-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1.5px solid var(--deku-light-green);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-green);
+}
+
+/* Hero Card — slanted panel look */
+.card-hero {
+  background: var(--deku-dark-green);
+  color: var(--deku-light-green);
+  border-radius: var(--radius-panel);
+  padding: var(--space-xl) var(--space-lg);
+  border: none;
+  box-shadow: var(--shadow-panel);
+  position: relative;
+  overflow: hidden;
+}
+.card-hero::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 200, 83, 0.15);
+  border-radius: 50%;
+}
+
+/* Notebook Card — lined paper */
+.card-notebook {
+  background: var(--deku-scratch);
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 27px,
+      rgba(0, 100, 50, 0.15) 28px
+    );
+  border-left: 4px solid var(--deku-red);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-lg);
+  font-family: var(--font-notebook);
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Stat Card — UA-style data block */
+.card-stat {
+  background: var(--deku-black);
+  color: var(--deku-green);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-stats);
+  border: 1px solid var(--deku-dark-green);
+  box-shadow: inset 0 0 20px rgba(0, 200, 83, 0.06);
+}
+.card-stat .stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--deku-mid-green);
+  margin-bottom: 4px;
+}
+.card-stat .stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--deku-lightning);
+  line-height: 1;
+}
+
+/* ── BADGES & TAGS ───────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-stats);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+}
+
+.badge-hero {
+  background: var(--deku-light-green);
+  color: var(--deku-dark-green);
+  border-color: var(--deku-mid-green);
+}
+.badge-ofa {
+  background: var(--deku-dark-green);
+  color: var(--deku-lightning);
+  border-color: var(--deku-green);
+  animation: ofa-pulse var(--anim-pulse) ease-in-out infinite;
+}
+.badge-quirk {
+  background: var(--deku-black);
+  color: var(--deku-gold);
+  border-color: var(--deku-dark-gold);
+}
+.badge-ua {
+  background: var(--deku-ua-gray);
+  color: var(--deku-ua-light);
+  border-color: #546E7A;
+}
+.badge-smash {
+  background: var(--deku-red);
+  color: #fff;
+  border-color: #b71c1c;
+}
+
+/* ── FORMS ────────────────────────────────────────────────── */
+
+label {
+  display: block;
+  font-family: var(--font-stats);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deku-mid-green);
+  margin-bottom: var(--space-xs);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+select,
+textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--deku-ink);
+  background: var(--deku-white);
+  border: 2px solid var(--deku-light-green);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--deku-green);
+  box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.2);
+}
+input::placeholder,
+textarea::placeholder {
+  color: rgba(30, 60, 30, 0.4);
+  font-style: italic;
+}
+
+/* Checkbox / Radio — hero-style */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--deku-green);
+  cursor: pointer;
+}
+
+/* Range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--deku-light-green);
+  border-radius: var(--radius-pill);
+  outline: none;
+  border: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--deku-green);
+  border: 3px solid var(--deku-dark-green);
+  cursor: pointer;
+  box-shadow: var(--shadow-vein);
+  transition: transform 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* ── TABLES ───────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-stats);
+  font-size: 0.9rem;
+}
+thead {
+  background: var(--deku-dark-green);
+  color: var(--deku-light-green);
+}
+th {
+  padding: 10px 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 2px solid var(--deku-green);
+}
+td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--deku-light-green);
+  color: var(--deku-ink);
+}
+tr:nth-child(even) td {
+  background: var(--deku-pale-green);
+}
+tr:hover td {
+  background: var(--deku-light-green);
+  transition: background 0.15s ease;
+}
+
+/* ── ALERTS / CALLOUTS ───────────────────────────────────── */
+
+.alert {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-family: var(--font-stats);
+  font-size: 0.95rem;
+  border-left: 4px solid transparent;
+}
+
+/* Deku's analysis note */
+.alert-analysis {
+  background: var(--deku-scratch);
+  border-left-color: var(--deku-mid-green);
+  color: var(--deku-ink);
+  font-family: var(--font-notebook);
+}
+
+/* Power-Up / Success */
+.alert-power {
+  background: var(--deku-pale-green);
+  border-left-color: var(--deku-green);
+  color: var(--deku-dark-green);
+}
+
+/* Warning / Red Boots danger */
+.alert-danger {
+  background: var(--deku-light-red);
+  border-left-color: var(--deku-red);
+  color: #7f0000;
+}
+
+/* All Might proclamation */
+.alert-allmight {
+  background: #FFF8DC;
+  border-left-color: var(--deku-gold);
+  color: #5D4037;
+}
+
+/* ── PROGRESS BARS (Quirk Meter) ─────────────────────────── */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: var(--deku-pale-green);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--deku-light-green);
+}
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--deku-mid-green), var(--deku-green));
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--deku-lightning);
+  border-radius: 50%;
+  box-shadow: var(--shadow-vein);
+}
+
+/* OFA 100% — full power bar */
+.progress-ofa .progress-fill {
+  background: linear-gradient(90deg, var(--deku-dark-green), var(--deku-lightning));
+  animation: ofa-pulse 1.5s ease-in-out infinite;
+}
+
+/* ── HERO STAT BARS (UA Style) ────────────────────────────── */
+.quirk-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+.quirk-stat-label {
+  font-family: var(--font-stats);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--deku-mid-green);
+  width: 90px;
+  flex-shrink: 0;
+}
+.quirk-stat-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(0, 100, 40, 0.12);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.quirk-stat-fill {
+  height: 100%;
+  background: var(--deku-green);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 6px rgba(0, 200, 83, 0.5);
+}
+.quirk-stat-score {
+  font-family: var(--font-hero);
+  font-size: 1.1rem;
+  color: var(--deku-dark-green);
+  width: 36px;
+  text-align: right;
+}
+
+/* ── NAVIGATION ──────────────────────────────────────────── */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--space-xl);
+  background: var(--deku-dark-green);
+  border-bottom: 3px solid var(--deku-green);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-brand {
+  font-family: var(--font-hero);
+  font-size: 1.8rem;
+  letter-spacing: 0.06em;
+  color: var(--deku-light-green);
+  text-shadow: 0 0 12px var(--deku-lightning);
+}
+.nav-links {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+  margin-left: auto;
+}
+.nav-links a {
+  font-family: var(--font-stats);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deku-light-green);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--deku-gold);
+  border-bottom-color: var(--deku-gold);
+}
+
+/* ── HERO SECTION ────────────────────────────────────────── */
+.hero-section {
+  background: var(--deku-black);
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xxl) var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 60%, rgba(0,200,83,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 20% 30%, rgba(0,200,83,0.04) 0%, transparent 60%);
+}
+
+/* ── SECTION DIVIDER — One For All Lightning ─────────────── */
+.divider-ofa {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--deku-dark-green) 20%,
+    var(--deku-green) 50%,
+    var(--deku-dark-green) 80%,
+    transparent 100%
+  );
+  margin: var(--space-xl) 0;
+  position: relative;
+}
+.divider-ofa::after {
+  content: '⚡';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  background: var(--deku-off-white);
+  padding: 0 8px;
+  line-height: 1;
+}
+
+/* ── TOOLTIP ─────────────────────────────────────────────── */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--deku-dark-green);
+  color: var(--deku-light-green);
+  font-family: var(--font-stats);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border: 1px solid var(--deku-green);
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+/* ── OFA GLOW EFFECT (apply to any element) ──────────────── */
+.ofa-glow {
+  box-shadow: var(--shadow-vein);
+  outline: 2px solid var(--deku-green);
+  outline-offset: 2px;
+}
+.ofa-text-glow {
+  color: var(--deku-lightning);
+  text-shadow: 0 0 10px var(--deku-green), 0 0 20px var(--deku-vein);
+}
+
+/* ── GREEN VEIN BORDER (channeling OFA) ──────────────────── */
+.vein-border {
+  border: 2px solid var(--deku-green);
+  box-shadow: inset 0 0 12px rgba(0, 200, 83, 0.08), var(--shadow-green);
+  border-radius: var(--radius-lg);
+}
+
+/* ── NOTEBOOK LAYOUT ─────────────────────────────────────── */
+.notebook-page {
+  background: var(--deku-scratch);
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 27px,
+      rgba(0, 120, 60, 0.12) 28px
+    );
+  border: 1px solid rgba(0,100,50,0.2);
+  border-left: 5px solid var(--deku-red);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  padding: var(--space-xl) var(--space-lg) var(--space-xl) var(--space-xl);
+  font-family: var(--font-notebook);
+  max-width: 680px;
+  box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
+}
+.notebook-page h3 {
+  font-family: var(--font-notebook);
+  font-size: 1.4rem;
+  color: var(--deku-red);
+  text-decoration: underline;
+  margin-bottom: var(--space-md);
+}
+
+/* ── LAYOUT HELPERS ──────────────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+.flex     { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.text-center { text-align: center; }
+.text-hero { font-family: var(--font-hero); }
+.text-notebook { font-family: var(--font-notebook); }
+.text-stats { font-family: var(--font-stats); }
+.text-green { color: var(--deku-green); }
+.text-gold { color: var(--deku-gold); }
+.text-red { color: var(--deku-red); }
+.text-muted { color: rgba(30,60,30,0.5); }
+.bg-dark { background: var(--deku-black); }
+.bg-green { background: var(--deku-pale-green); }
+
+/* ── ANIMATIONS ──────────────────────────────────────────── */
+
+/* OFA energy pulse */
+@keyframes ofa-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(0, 230, 118, 0.4); }
+  50%       { box-shadow: 0 0 20px rgba(0, 230, 118, 0.8), 0 0 40px rgba(118, 255, 3, 0.3); }
+}
+
+/* Smash impact shake */
+@keyframes smash-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-5px) rotate(-1deg); }
+  40%      { transform: translateX(5px) rotate(1deg); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(3px); }
+}
+
+/* Float — hovering above ground */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* Lightning flicker */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.7; }
+  75%      { opacity: 0.9; }
+}
+
+/* Reveal — hero entrance */
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* OFA charge up — grows from left */
+@keyframes charge-up {
+  from { width: 0%; }
+  to   { width: var(--charge-pct, 100%); }
+}
+
+/* Spark pop */
+@keyframes spark-pop {
+  0%   { transform: scale(0) rotate(0deg); opacity: 0; }
+  60%  { transform: scale(1.2) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Vein glow pulse (like OFA radiating through body) */
+@keyframes vein-glow {
+  0%, 100% {
+    text-shadow: 0 0 8px var(--deku-green);
+    color: var(--deku-lightning);
+  }
+  50% {
+    text-shadow: 0 0 20px var(--deku-green), 0 0 40px var(--deku-vein);
+    color: #fff;
+  }
+}
+
+/* Helper classes to apply animations */
+.anim-pulse  { animation: ofa-pulse var(--anim-pulse) ease-in-out infinite; }
+.anim-float  { animation: float var(--anim-float) ease-in-out infinite; }
+.anim-shake  { animation: smash-shake var(--anim-smash) ease-in-out; }
+.anim-reveal { animation: hero-reveal 0.5s ease both; }
+.anim-vein   { animation: vein-glow var(--anim-pulse) ease-in-out infinite; }
+.anim-flicker { animation: flicker 0.3s ease-in-out 3; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .nav {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .nav-links {
+    margin-left: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+}
+
+/* ── DARK MODE (UA Night Patrol) ─────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --deku-off-white: #0D0D1A;
+    --deku-white:     #12201A;
+    --deku-scratch:   #0F1A12;
+    --deku-ink:       #B9F6CA;
+    --deku-pale-green: rgba(0, 200, 83, 0.08);
+    --shadow-card:    0 2px 12px rgba(0, 200, 83, 0.08);
+  }
+  body {
+    background: var(--deku-off-white);
+    color: var(--deku-ink);
+  }
+  input, select, textarea {
+    background: #0F1A12;
+    color: var(--deku-light-green);
+    border-color: var(--deku-dark-green);
+  }
+}
+
+/* ── PRINT ────────────────────────────────────────────────── */
+@media print {
+  .nav, .btn, [data-tooltip]::after {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  .card, .card-hero {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ============================================================
+   END OF DEKU.CSS
+   "I'm not gonna be your friend... I'm gonna be your hero."
+                                         — Izuku "Deku" Midoriya
+   ============================================================ */
